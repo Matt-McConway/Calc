@@ -12,8 +12,12 @@ export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.result}></View>
-        <View style={styles.calculation}></View>
+        <View style={styles.result}>
+          <Text style={styles.resultText}>11*11</Text>
+        </View>
+        <View style={styles.calculation}>
+          <Text style={styles.calculationText}>121</Text>
+        </View>
         <View style={styles.buttons}>
           <View style={styles.numbers}>
             <View style={styles.row}>
@@ -37,7 +41,12 @@ export default class App extends Component {
               <Button title="0"/>
             </View>
           </View>
-          <View style={styles.operations}></View>
+          <View style={styles.operations}>
+            <Button title="+" />
+            <Button title="+" />
+            <Button title="+" />
+            <Button title="+" />
+          </View>
         </View>
         
       </View>
@@ -51,11 +60,23 @@ const styles = StyleSheet.create({
   },
   result: {
     flex: 2,
-    backgroundColor: "red"
+    backgroundColor: "red",
+    justifyContent: "center",
+    alignItems: "flex-end"
+  },
+  resultText: {
+    fontSize: 30,
+    color: "white"
   },
   calculation: {
     flex: 1,
-    backgroundColor: "green"
+    backgroundColor: "green",
+    justifyContent: "center",
+    alignItems: "flex-end"
+  },
+  calculationText: {
+    fontSize: 24,
+    color: "white"
   },
   buttons: {
     flex: 7,
@@ -73,6 +94,7 @@ const styles = StyleSheet.create({
   },
   operations: {
     flex: 1,
+    justifyContent: "space-around",
     backgroundColor: "black"
   }
 });
