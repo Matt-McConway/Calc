@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View} from 'react-native';
+import { Button, StyleSheet, Text, View} from 'react-native';
 
 
 export default class App extends Component {
@@ -15,7 +15,28 @@ export default class App extends Component {
         <View style={styles.result}></View>
         <View style={styles.calculation}></View>
         <View style={styles.buttons}>
-          <View style={styles.numbers}></View>
+          <View style={styles.numbers}>
+            <View style={styles.row}>
+              <Button title="0"/>
+              <Button title="0"/>
+              <Button title="0"/>
+            </View>
+            <View style={styles.row}>
+              <Button title="0"/>
+              <Button title="0"/>
+              <Button title="0"/>
+            </View>
+            <View style={styles.row}>
+              <Button title="0"/>
+              <Button title="0"/>
+              <Button title="0"/>
+            </View>
+            <View style={styles.row}>
+              <Button title="0"/>
+              <Button title="0"/>
+              <Button title="0"/>
+            </View>
+          </View>
           <View style={styles.operations}></View>
         </View>
         
@@ -39,6 +60,12 @@ const styles = StyleSheet.create({
   buttons: {
     flex: 7,
     flexDirection: "row"
+  },
+  row: {
+    flexDirection: "row",
+    flex: 1,
+    justifyContent: "space-around",
+    alignItems: "center"
   },
   numbers: {
     flex: 3,
