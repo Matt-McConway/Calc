@@ -7,12 +7,21 @@ export default class App extends Component {
   constructor() {
     super()
     this.state = {
-      resultText: ""
+      resultText: "",
+      calculationText: ""
     }
+
+    this.operations = ["Del", '+', '-', '*', '/']
   }
 
   calculateResult() {
     const text = this.state.resultText
+
+
+    this.setState({
+      calculationText: eval(text)
+    })
+
   }
 
   buttonPressed(text) {
@@ -32,6 +41,22 @@ export default class App extends Component {
         this.setState({
           resultText: text.join('')
         })
+        break
+      case '+':
+      case '-':
+      case '*':
+      case '/':
+
+      // Prevent two operations in a row
+      const lastCharacter = this.state.resultText.split('').pop()
+      if (this.operations.indexOf(lastCharacter) > 0) return
+      
+      // prevent first character being an operator
+      if(this.state.resultText == "") return
+
+      this.setState({
+        resultText: this.state.resultText + operation
+      })
     }
   }
 
@@ -50,12 +75,12 @@ export default class App extends Component {
       rows.push(<View style={styles.row}>{row}</View>)
     }
 
-    let operations = ["Del", '+', '-', '*', '/']
+    
     let ops = []
-    for(let i=0; i < 4; i++){
+    for(let i=0; i < 5; i++){
       ops.push(
-        <TouchableOpacity style={styles.btn} onPress={() => this.operate(operations[i])}>
-          <Text style={[styles.btnText, {color: "white"}]}>{operations[i]}</Text>
+        <TouchableOpacity style={styles.btn} onPress={() => this.operate(this.operations[i])}>
+          <Text style={[styles.btnText, {color: "white"}]}>{this.operations[i]}</Text>
         </TouchableOpacity>
       )
     }
@@ -66,7 +91,7 @@ export default class App extends Component {
           <Text style={styles.resultText}>{this.state.resultText}</Text>
         </View>
         <View style={styles.calculation}>
-          <Text style={styles.calculationText}>121</Text>
+          <Text style={styles.calculationText}>{this.state.calculationText}</Text>
         </View>
         <View style={styles.buttons}>
           <View style={styles.numbers}>
